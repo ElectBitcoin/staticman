@@ -52,8 +52,8 @@ export default class ReCaptcha extends CaptchaService {
         throw errorHandler(res["error-codes"][0]);
       }
       if (this.version === "V3") {
-        if (typeof res?.score === 'number' && res?.score > this.score) {
-          throw errorHandler('RECAPTCHA_V3_SCORE_HIGH')
+        if (typeof res?.score === 'number' && res?.score < this.score) {
+          throw errorHandler('RECAPTCHA_V3_SCORE_LOW')
         }
       }
       return true
