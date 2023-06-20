@@ -59,7 +59,10 @@ export default class StaticmanAPI {
   initialiseBruteforceProtection() {
     const store = new ExpressBrute.MemoryStore();
 
-    this.bruteforce = new ExpressBrute(store);
+    this.bruteforce = new ExpressBrute(store, {
+      freeRetries: 100,
+      lifetime: 15*60 //15 mins (not ms)
+    });
   }
 
   initialiseCORS() {
